@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PL_DBF.Models.Usuario>
+
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Usuarios</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+               De clic en el boton verde para agregar un usuario, en el amarillo para editarlo,
+               en el azul para ver el detalle del registro y, en el boton rojo para eliminar un usuario.
+            </p>
+        </div>
+    </div>
+
+    <div class=row>
+        <div class="col-md-12">
+            <p class="align-content-around">
+                <a class="btn btn-success" asp-action="Create">Agregar un nuevo Usuario</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td>Editar</td>
+                        <td>Detalle</td>
+                        <td>Nombre completo@*@Html.DisplayNameFor(model => model.Nombre)*@ </td>               
+                        <td>Fecha de Nacimiento @*@Html.DisplayNameFor(model => model.FechaNacimiento)*@</td>
+                        <td>Correo @*@Html.DisplayNameFor(model => model.Email)*@</td>
+                        <td>Teléfono @* @Html.DisplayNameFor(model => model.Telefono)*@</td>
+                        <td>Rol @*@Html.DisplayNameFor(model => model.IdRol)*@</td>
+                        <td>Eliminar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdUsuario">Editar</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdUsuario">Detalle</a>
+                                </td>
+                                <td>
+                                    @item.Nombre @item.ApellidoPaterno @item.ApellidoMaterno
+                                </td>
+                                <td>
+                                    @item.FechaNacimiento
+                                </td>
+                                <td>
+                                    @item.Email
+                                </td>
+                                <td>
+                                    @item.Telefono
+                                </td>
+                                <td>
+                                    @item.IdRolNavigation.Nombre
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger " asp-action="Delete" asp-route-id="@item.IdUsuario">Eliminar</a>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

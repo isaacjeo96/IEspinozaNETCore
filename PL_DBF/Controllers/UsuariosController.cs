@@ -20,7 +20,7 @@ namespace PL_DBF.Controllers
         }
 
         // GET: Usuarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
             var iEspinozaNETCoreContext = _context.Usuarios.Include(u => u.IdRolNavigation);
             return View(await iEspinozaNETCoreContext.ToListAsync());
@@ -53,8 +53,7 @@ namespace PL_DBF.Controllers
         }
 
         // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdUsuario,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Email,Telefono,IdRol")] Usuario usuario)
@@ -87,8 +86,7 @@ namespace PL_DBF.Controllers
         }
 
         // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Email,Telefono,IdRol")] Usuario usuario)
